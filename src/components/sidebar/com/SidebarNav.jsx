@@ -1,24 +1,39 @@
-import React from 'react'
+import { NavLink, useLocation } from "react-router-dom"
+import {cn} from "cn";
 
-import { sidebarNav } from '../../../data/nav';
+function SidebarNavItem({ item }) {
+  const { pathname } = useLocation();
 
-function SidebarNavItem({item}) {
-  const {badge, icon: Icon , label} = item;
+  const { badge, icon: Icon, label, to, activePaths = [item.to] } = item;
 
-  return <li>
-    <div className='flex items-center gap-3 w-full h-11 px-3 text-left text-sm font-medium'>
-      <Icon className="size-4 shrink-0" /> 
-      <div>{ label }</div>
-      {badge && <span className="ml-auto bg-[#d85e38] px-1.5 py-0 rounded-full text-[11px] text-white text-semibold" >{badge}</span>}
-    </div>
+  const isActive = activePaths.includes(pathname)
+
+  return (
+  <li>
+    <NavLink
+      to={to}
+      className={cn({
+        "flex h-11 w-full items-center gap-3 rounded-lg px-3 text-left text-sm font-medium": true,
+        "bg-[#fdf1ed] text-[#a63d1d] ":isActive
+      })}
+    >
+      <Icon className="size-4 shrink-0" />
+      <span>{label}</span>
+      {badge &&
+        (<span className="ml-auto bg-[#d85e38] px-1.5 py-0 rounded-full text-[11px] text-white text-semibold" >
+          {badge}
+        </span>)
+      }
+    </NavLink>
   </li>
+  )
 }
 
-function SidebarNav() {
+function SidebarNav({ items }) {
   return (
     <div>
       <ul className='space-y-1'>
-        {sidebarNav.map((item) => (
+        {items.map((item) => (
           <li key={item.label}>
             <SidebarNavItem item={item} />
           </li>
