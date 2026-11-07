@@ -34,9 +34,7 @@ function SidebarNav({ items }) {
     <div>
       <ul className='space-y-1'>
         {items.map((item) => (
-          <li key={item.label}>
-            <SidebarNavItem item={item} />
-          </li>
+          <SidebarNavItem key={item.label} item={item} />
         ))}
       </ul>
     </div>
