@@ -1,6 +1,6 @@
 import { BarChart3 } from "lucide-react"
 
-function SidebarHeader() {
+function SidebarHeader({header}) {
   return (
     <div className="flex items-center gap-3 h-16 px-5 border-b border-border">
         <div className="flex justify-center items-center size-8 rounded-lg bg-[#e85d31] text-white shadow-sm">
@@ -8,8 +8,8 @@ function SidebarHeader() {
             </div>
 
             <div className="leading-tight">
-                <p className='text-sm font-semibold text-foreground'>StockFlow</p>
-                <p className='text-[11px] text-muted-foreground'>Distribution System</p>
+                <p className='text-sm font-semibold text-foreground'>{header.title}</p>
+                <p className='text-[11px] text-muted-foreground'>{header.subtitle}</p>
             </div>
         </div>
   )

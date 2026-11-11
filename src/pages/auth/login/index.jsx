@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { NavLink } from "react-router-dom"
 import {
   Card,
   CardAction,
@@ -12,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-import AuthLayout from '../../layouts/AuthLayout'
+import AuthLayout from '../../../layouts/AuthLayout'
 
 function Login() {
   const [form, setForm] = useState({
@@ -70,12 +71,20 @@ function Login() {
               </div>
             </div>
             <Button type="submit" className="w-full bg-orange-500 mt-5">
-              Login
+              Sign in
             </Button>
 
           </form>
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            New to StackFlow?{" "}
+            <NavLink
+              to="/sign-up"
+              className="font-medium text-orange-600 hover:underline"
+            >
+              Sign up
+            </NavLink>
+          </p>
         </CardContent>
-
       </Card>
     </AuthLayout>
   )

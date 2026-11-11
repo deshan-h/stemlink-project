@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DefaultLayout from '@/layouts/DefaultLayout'
+import SMLayout from '@/layouts/SMLayout'
 import StockSummaryFilters from './com/StockSummaryFilters'
 import GreetingBanner from './com/GreetingBanner'
 import StockOverview from './com/StockOverview'
@@ -10,7 +10,7 @@ import { productStockItems } from '@/data/mock/stock-summary'
 
 function StockSummary() {
   return (
-    <DefaultLayout>
+    <SMLayout>
       <div className='mx-auto w-full max-w-full max-w-6xl space-y-5'>
         <StockSummaryFilters />
         <GreetingBanner />
@@ -18,7 +18,7 @@ function StockSummary() {
         <MonthlyStockMovement />
         <ProductStock products={productStockItems} />
       </div>
-    </DefaultLayout>
+    </SMLayout>
   )
 }
 

@@ -1,14 +1,13 @@
 import React from 'react'
 
 import { SidebarHeader, SidebarProfile, SidebarNav } from './com'
-import { sidebarNav } from '@/data/nav';
 
-function SideBar() {
+function SideBar({ nav, profile, header }) {
   return (
-    <div className="w-60 border-r border-border bg-background flex flex-col">
-      <SidebarHeader />
-      <SidebarNav items={sidebarNav} />
-      <SidebarProfile />
+    <div className="sticky top-0 h-screen z-40 w-60 border-r border-border bg-background flex flex-col">
+      <SidebarHeader header={header} />
+      <SidebarNav items={nav} />
+      <SidebarProfile profile={profile} />
     </div>
   )
 }

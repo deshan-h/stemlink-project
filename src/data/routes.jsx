@@ -1,34 +1,62 @@
-import {
-    Login,
-    StockSummary,
-    StockRequests,
-    DistributionRuns,
-    ReturnApprovals
-} from "@/pages";
+import * as Pages from "@/pages"
 
 export const routes = [
     {
-        route: "/",
-        page: <StockSummary />
-    },
-    {
         route: "/login",
-        page: <Login />
+        page: <Pages.Login />
     },
     {
+        route: "/sign-up",
+        page: <Pages.SignUp />
+    },
+
+    // Stock Manager
+    {
+        title: "Stock Summary",
+        route: "/",
+        page: <Pages.StockSummary />
+    },
+
+    {
+        title: "Stock Summary",
         route: "/stock-summary",
-        page: <StockSummary />
+        page: <Pages.StockSummary />
     },
     {
+        title: "Stock Requests",
         route: "/stock-requests",
-        page: <StockRequests />
+        page: <Pages.StockRequests />
     },
     {
+        title: "Distribution Runs",
         route: "/distribution-runs",
-        page: <DistributionRuns />
+        page: <Pages.DistributionRuns />
     },
     {
+        title: "Return Approvals",
         route: "/return-approvals",
-        page: <ReturnApprovals />
+        page: <Pages.ReturnApprovals />
+    },
+
+    //fdo
+    {
+        title: "Stock Request",
+        route: "/fdo",
+        page: <Pages.FDOStockRequests />
+    },
+    {
+        title: "Stock Request",
+        route: "/fdo/stock-requests",
+        page: <Pages.FDOStockRequests />
+    },
+    {
+        title: "Distributions",
+        route: "/fdo/distributions",
+        page: <Pages.FDODistributions />
+    },
+    {
+        title: "Run History",
+        route: "/fdo/run-history",
+        page: <Pages.FDORunHistory />
     },
 ]

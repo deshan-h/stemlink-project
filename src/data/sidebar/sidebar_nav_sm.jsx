@@ -32,3 +32,8 @@ export const sidebarHeaderSM = {
   subtitle: "Distribution System",
 };
 
+export const sidebarProfileSM = {
+  name: "Deshan Hettiarachchi",
+  role: "Stock Manager",
+  detail: "Kurunegala Warehouse"
+};
