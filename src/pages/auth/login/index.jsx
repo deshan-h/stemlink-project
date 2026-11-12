@@ -1,25 +1,32 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-
 import AuthLayout from '../../../layouts/AuthLayout'
+import { signInWithPassword } from "@/lib/auth"
+
+const landingPageByRole = {
+  "stock-manager": "/",
+  "fdo": "/fdo",
+}
 
 function Login() {
+  const navigate = useNavigate();
+
+  const [error, setError] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: ""
-  })
+  });
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -30,8 +37,25 @@ function Login() {
     }))
   }
 
-  function handleSubmit(event) {
-    alert(JSON.stringify(form))
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
+
+    try {
+      const user = await signInWithPassword(form);
+      const destination = user && landingPageByRole[user.role];
+
+      if (!destination) {
+        setError("Invalid Email or Password");
+        return;
+      }
+      navigate(destination, { replace: true });
+    } catch {
+      setError("Unable to sign in. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -70,8 +94,13 @@ function Login() {
                 <Input id="password" name="password" type="password" required onChange={handleChange} />
               </div>
             </div>
-            <Button type="submit" className="w-full bg-orange-500 mt-5">
-              Sign in
+            {error && (
+              <p role="alert" className="mt-4 text-sm text-red-600">
+                {error}
+              </p>
+            )}
+            <Button type="submit" className="w-full bg-orange-500 mt-5" disabled={isSubmitting}>
+              {isSubmitting ? "Signing in..." : "Sign in"}
             </Button>
 
           </form>
