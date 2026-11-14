@@ -1,20 +1,21 @@
-import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { UserButton } from "@clerk/react";
+import { useLocation } from "react-router-dom";
 
-import { Button } from '../ui/button'
-import { routes } from '@/data/routes';
+import { routes } from "@/data/routes";
 
 function TopNav() {
-  const {pathname} = useLocation();
-  const navigate = useNavigate();
-  const pageTitle = routes.find(({route})=> route === pathname)?.title;
+  const { pathname } = useLocation();
+  const pageTitle = routes.find(({ route }) => route === pathname)?.title;
 
   return (
-    <div className='sticky top-0 z-40 flex justify-between items-center h-16 bg-gray-200 border-b border-b-gray-400 px-6'>
-      <div className='text-xl font-bold hover:cursor-pointer' onClick={() => navigate("/")}>{pageTitle}</div>
-      <Button onClick={() => navigate('/login')}>Login</Button>
-    </div>
-  )
+    <header className="sticky top-0 z-40 flex h-16 w-full items-center gap-2 border-b bg-background px-3 sm:px-6">
+      <h1 className="min-w-0 truncate font-semibold text-foreground">{pageTitle}</h1>
+
+      <div className="ml-auto flex shrink-0 items-center gap-2">
+        <UserButton />
+      </div>
+    </header>
+  );
 }
 
-export default TopNav
+export default TopNav;

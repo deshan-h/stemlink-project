@@ -27,9 +27,3 @@ export const sidebarHeaderFDO = {
   title: "StockFlow",
   subtitle: "FDO Portal",
 };
-
-export const sidebarProfileFDO = {
-  name: "Mahinda Rajapaksha",
-  role: "Field Distribution Officer",
-  detail: "Colombo Warehouse"
-};

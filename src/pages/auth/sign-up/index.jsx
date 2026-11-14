@@ -1,11 +1,19 @@
-import React from 'react'
+import { SignUp } from "@clerk/react";
 
-import AuthLayout from '@/layouts/AuthLayout'
+import AuthLayout from "@/layouts/AuthLayout";
+import AuthBrand from "../com/AuthBrand";
 
-function index() {
+function SignUpPage() {
   return (
-    <AuthLayout>SignUp</AuthLayout>
-  )
+    <AuthLayout>
+      <div className="w-full max-w-md px-4 py-6">
+        <AuthBrand />
+        <div className="flex justify-center">
+          <SignUp routing="path" path="/sign-up" />
+        </div>
+      </div>
+    </AuthLayout>
+  );
 }
 
-export default index
+export default SignUpPage;
